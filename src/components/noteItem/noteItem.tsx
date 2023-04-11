@@ -49,7 +49,7 @@ const NoteItem: React.FC<NoteItemProps> = ({
   const thunkDispatch = useThunkAppDispatch();
 
   const handleDeleteNote = useCallback(
-    (note: any) => {
+    async (note: any) => {
       const path = {
         userId: userLogged.user.id,
         noteId: note._id,
@@ -62,7 +62,7 @@ const NoteItem: React.FC<NoteItemProps> = ({
         return;
       }
       if (deleted) {
-        const result = thunkDispatch(
+        const result = await thunkDispatch(
           deleteNoteAction(path)
         );
         alert("Nota apagada!");
@@ -80,7 +80,7 @@ const NoteItem: React.FC<NoteItemProps> = ({
     []
   );
 
-  const handleArchived = () => {
+  const handleArchived = async () => {
     if (note._filed === false) {
       // eslint-disable-next-line no-restricted-globals
       const archived = confirm(
@@ -96,7 +96,7 @@ const NoteItem: React.FC<NoteItemProps> = ({
         description: note._description,
         filed: true,
       };
-      const result = thunkDispatch(
+      const result = await thunkDispatch(
         updateNoteAction(data)
       );
     }
@@ -115,13 +115,13 @@ const NoteItem: React.FC<NoteItemProps> = ({
         description: note._description,
         filed: false,
       };
-      const result = thunkDispatch(
+      const result = await thunkDispatch(
         updateNoteAction(data)
       );
     }
     alert("Nota arquivada!");
   };
-  const handleEditNote = () => {
+  const handleEditNote = async () => {
     if (!editTitle || editTitle.length < 3) {
       alert(
         "Titulo inválido! \nPreencha com pelo menos 3 caractéres"
@@ -145,7 +145,7 @@ const NoteItem: React.FC<NoteItemProps> = ({
       description: editDescription,
       filed: note._filed,
     };
-    thunkDispatch(updateNoteAction(data));
+    await thunkDispatch(updateNoteAction(data));
     alert("Nota editada!");
     setOpenEdit(false);
   };

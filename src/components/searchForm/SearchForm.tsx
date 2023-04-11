@@ -46,7 +46,7 @@ export default function SearchForm({
     setStatus("");
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!title) {
       setTitle("");
     }
@@ -58,7 +58,7 @@ export default function SearchForm({
       title,
       filed: status,
     };
-    const result = thunkDispatch(
+    const result = await thunkDispatch(
       listNotesAction(list)
     );
     handleClear();
