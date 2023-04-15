@@ -1,14 +1,11 @@
-import React, {
-  // useEffect,
-  useState,
-} from "react";
+import React, { useState } from "react";
 import {
   Button,
   Grid,
   TextField,
   Typography,
 } from "@mui/material";
-// import { useAppDispatch, useAppSelector } from '../store/hooks';
+
 import { useNavigate } from "react-router-dom";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { createUser } from "../services/api.service";
@@ -21,17 +18,8 @@ const Register: React.FC = () => {
     useState<string>("");
   const [confirmPassword, setconfirmPassword] =
     useState<string>("");
-  // const loginRedux = useAppSelector(state => state.login);
-  // const userLogged = loginRedux.userList.findIndex(user => user.logged);
 
-  // const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   if (userLogged !== -1) {
-  //     navigate('/');
-  //   }
-  // }, [loginRedux, navigate]);
 
   const handleRegister = async () => {
     if (!username || username.length < 3) {

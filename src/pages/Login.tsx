@@ -13,7 +13,6 @@ import { useNavigate } from "react-router-dom";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 
 import { loginAction } from "../store/modules/loginSlice";
-// import { login } from "../store/modules/LoginSlice";
 
 const Login: React.FC = () => {
   const userLogged = useAppSelector(
@@ -22,16 +21,9 @@ const Login: React.FC = () => {
   const [email, setMail] = useState<string>("");
   const [password, setPassword] =
     useState<string>("");
-  // const dispatch = useAppDispatch();
+
   const thunkDispatch = useThunkAppDispatch();
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   const userLogged = loginRedux.userList.findIndex(user => user.logged);
-  //   if (userLogged !== -1) {
-  //     navigate('/');
-  //   }
-  // }, [loginRedux, navigate]);
 
   const handleLogin = async () => {
     if (!email || email.length < 6) {
